@@ -2,10 +2,14 @@
 
 #include <vector>
 #include <algorithm>
+#include <numeric>
+using namespace std;
 
-
-int sum(const std::vector<int>& values){
-	return 0;
+int sum(const std::vector<int>& values)
+{
+	int init = 0;
+	int sum = accumulate(values.begin(), values.end(), init);
+	return sum;
 }
 
 // write the sum function
@@ -28,7 +32,7 @@ void sortFunction(
 	std::vector<int>::iterator begin,
 	std::vector<int>::iterator end)
 {
-
+	sort(begin, end);
 }
 
 // write the content of sort
@@ -43,6 +47,37 @@ TEST(ex2, test2)
 
 //***********************************************************
 
+class A
+{
+public:
+	A(bool valid) :valid_(valid) {}
+	bool isValid() const { return valid_; }
+
+private:
+	bool valid_;
+};
+
+bool isUnvalid(const A & a)
+{
+	return !a.isValid();
+}
+
+void removeInvalid(vector<A>&array)
+{
+	vector<A>::iterator it = array.begin();
+
+}
+
+TEST(ex2, test3)
+{
+	vector<A> array = { A(true), A(true), A(false), A(false), A(true), A(false) };
+
+	EXPECT_EQ(6, array.size());
+	removeInvalid(array);
+	EXPECT_EQ(3, array.size());
+}
+
+//***********************************************************
 
 
 int main(int argc, char **argv)
